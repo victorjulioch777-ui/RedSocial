@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Escribe un Post - Red Social</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/write.css" />
+  </head>
+  <body>
+    <main class="write-page">
+      <section class="write-card">
+        <p class="eyebrow">Nuevo post</p>
+        <h1>✍️ Escribe un nuevo Post</h1>
+
+        <form id="postForm" class="post-form">
+          <label for="writer">Tu nombre</label>
+          <input
+            type="text"
+            id="writer"
+            placeholder="Escribe tu nombre"
+            required
+          />
+
+          <label for="content">Tu Post</label>
+          <textarea
+            id="content"
+            rows="6"
+            placeholder="¿Qué estás pensando?"
+            required
+          ></textarea>
+
+          <button type="submit">Publicar</button>
+        </form>
+
+        <a class="back-link" href="index.html">← Regresar al inicio</a>
+      </section>
+    </main>
+
+    <script src="../js/write.js"></script>
+  </body>
+</html>
