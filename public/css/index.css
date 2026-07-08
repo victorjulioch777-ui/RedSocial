@@ -1,88 +1,72 @@
 .home-page {
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   background:
-    radial-gradient(circle at top, rgba(37, 99, 235, 0.12), transparent 38%),
-    linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+    linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)),
+    url("../imagenes/fondo.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .hero-card {
-  width: min(720px, 100%);
-  padding: 40px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.86);
-  border: 1px solid #dbe7f3;
-  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.1);
+  width: 85%;
+  max-width: 900px;
   text-align: center;
-  backdrop-filter: blur(8px);
+  padding: 80px 40px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .eyebrow {
-  margin: 0 0 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #2563eb;
+  margin-bottom: 20px;
+  color: #555;
 }
 
 .hero-card h1 {
-  margin: 0;
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  color: #0f172a;
+  font-size: 55px;
+  margin-bottom: 25px;
+  font-family: Georgia, serif;
 }
 
 .lead {
-  max-width: 58ch;
-  margin: 18px auto 0;
-  font-size: 1.08rem;
-  line-height: 1.7;
-  color: #475569;
+  font-size: 22px;
+  max-width: 650px;
+  margin: 0 auto 40px;
+  line-height: 1.5;
 }
 
 .home-actions {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
+  gap: 15px;
 }
 
 .btn-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 18px;
-  border-radius: 999px;
-  background: #2563eb;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
+  padding: 15px 25px;
+  background-color: #111;
+  color: white;
+  border-radius: 12px;
+  font-weight: bold;
 }
 
 .btn-link:hover {
-  text-decoration: none;
-  transform: translateY(-1px);
-  background: #1d4ed8;
+  background-color: #333;
 }
 
 .btn-link.secondary {
-  background: #e2e8f0;
-  color: #1e293b;
+  background-color: #9effb8;
+  color: #111;
 }
 
 .btn-link.secondary:hover {
-  background: #cbd5e1;
-}
-
-@media (max-width: 640px) {
-  .hero-card {
-    padding: 26px 20px;
-    border-radius: 18px;
-  }
+  background-color: #7ee99b;
 }
