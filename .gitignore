@@ -1,3 +1,9 @@
 .agents/
 .codex/
 .claude/
+
+node_modules/
+.env
+
+package-lock.json
+package.json
