@@ -104,3 +104,12 @@
     border-radius: 16px;
   }
 }
+
+.btn-link.logout {
+  background: #ef4444;
+  color: #fff;
+}
+
+.btn-link.logout:hover {
+  background: #dc2626;
+}

@@ -101,3 +101,18 @@
     border-radius: 18px;
   }
 }
+
+.write-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.write-actions .back-link {
+  margin-top: 0;
+}
+
+.logout-link {
+  color: #dc2626;
+}

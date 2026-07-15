@@ -23,6 +23,15 @@
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
+.hero-image {
+  width: min(100%, 680px);
+  max-height: 260px;
+  margin-bottom: 26px;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
 .eyebrow {
   font-size: 18px;
   letter-spacing: 2px;
@@ -69,4 +78,37 @@
 
 .btn-link.secondary:hover {
   background-color: #7ee99b;
+}
+
+.btn-link.logout {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.btn-link.logout:hover {
+  background-color: #dc2626;
+}
+
+@media (max-width: 640px) {
+  .hero-card {
+    padding: 48px 22px;
+    border-radius: 18px;
+  }
+
+  .hero-image {
+    max-height: 190px;
+    border-radius: 14px;
+  }
+
+  .hero-card h1 {
+    font-size: 38px;
+  }
+
+  .lead {
+    font-size: 18px;
+  }
+
+  .home-actions {
+    flex-direction: column;
+  }
 }
