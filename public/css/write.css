@@ -1,118 +1,177 @@
 .write-page {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: 32px 24px;
+
   background:
-    radial-gradient(circle at top, rgba(37, 99, 235, 0.1), transparent 36%),
-    linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+    radial-gradient(ellipse 120% 55% at 50% 0%, rgba(139, 92, 246, 0.2) 0%, transparent 58%),
+    linear-gradient(rgba(7, 7, 13, 0.86), rgba(7, 7, 13, 0.86)),
+    url('/public/imagenes/fondo2.jpg');
+  background-size: cover;
+  background-position: center;
+
 }
 
+/* ── Write Card ── */
 .write-card {
-  width: min(680px, 100%);
-  padding: 36px;
-  border-radius: 24px;
-  background: #ffffff;
-  border: 1px solid #dbe7f3;
-  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.1);
+  width: min(660px, 100%);
+  padding: 46px 42px;
+  border-radius: var(--r-xl);
+
+  background: var(--surface);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  animation: spring-in 0.55s var(--ease-spring) 0.1s both;
 }
 
+.write-card .eyebrow {
+  margin-bottom: 10px;
+}
+
+/* ── Heading ── */
 .write-card h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
   margin: 0;
-  color: #0f172a;
-  text-align: left;
+  color: var(--text-1);
 }
 
+/* ── Form ── */
 .post-form {
   display: grid;
-  gap: 12px;
-  margin-top: 24px;
+  gap: 14px;
+  margin-top: 28px;
 }
 
 .post-form label {
-  font-weight: 700;
-  color: #1e293b;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 2px;
 }
 
 .post-form input,
 .post-form textarea {
   width: 100%;
-  padding: 14px 16px;
-  border: 1px solid #cbd5e1;
-  border-radius: 14px;
-  background: #f8fafc;
-  color: #0f172a;
-  font: inherit;
+  padding: 13px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-1);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.94rem;
   transition:
     border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
+    box-shadow   0.2s ease,
+    background-color 0.2s ease;
+}
+
+.post-form input::placeholder,
+.post-form textarea::placeholder {
+  color: var(--text-3);
 }
 
 .post-form input:focus,
 .post-form textarea:focus {
   outline: none;
-  border-color: #2563eb;
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+  border-color: var(--accent);
+  background: rgba(139, 92, 246, 0.06);
+  box-shadow: 0 0 0 3px var(--accent-dim), 0 0 14px var(--accent-glow);
 }
 
 .post-form textarea {
   resize: vertical;
-  min-height: 160px;
+  min-height: 164px;
+  line-height: 1.72;
 }
 
+/* ── Submit button ── */
 .post-form button {
   justify-self: start;
-  margin-top: 4px;
-  padding: 12px 18px;
-  border: 0;
-  border-radius: 999px;
-  background: #2563eb;
-  color: #ffffff;
-  font: inherit;
+  padding: 13px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
   transition:
-    transform 0.2s ease,
-    background 0.2s ease;
+    transform  0.22s var(--ease-spring),
+    box-shadow 0.22s var(--ease-out),
+    background-color 0.15s ease;
+  will-change: transform;
 }
 
 .post-form button:hover {
-  transform: translateY(-1px);
-  background: #1d4ed8;
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-accent);
 }
 
-.back-link {
-  display: inline-block;
-  margin-top: 22px;
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: 600;
+.post-form button:active {
+  transform: scale(0.97);
+  box-shadow: none;
+  transition-duration: 0.08s;
 }
 
-.back-link:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 640px) {
-  .write-card {
-    padding: 24px 18px;
-    border-radius: 18px;
-  }
-}
-
+/* ── Back links ── */
 .write-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 22px;
+  margin-top: 24px;
 }
 
-.write-actions .back-link {
-  margin-top: 0;
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition:
+    color     0.15s ease,
+    transform 0.2s  var(--ease-spring);
+}
+
+.back-link:hover {
+  color: var(--text-1);
+  transform: translateX(-3px);
 }
 
 .logout-link {
-  color: #dc2626;
+  color: var(--danger);
+}
+
+.logout-link:hover {
+  color: #ff6b6b;
+  transform: none;
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .write-card {
+    padding: 36px 24px;
+  }
+
+  .write-card h1 {
+    font-size: 1.55rem;
+  }
+
+  .post-form button {
+    width: 100%;
+    justify-self: stretch;
+    text-align: center;
+  }
 }

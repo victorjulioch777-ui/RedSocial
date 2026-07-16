@@ -1,115 +1,138 @@
 .posts-page {
-  max-width: 760px;
-  margin: 48px auto;
-  padding: 32px;
-  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
-  border: 1px solid #e5eef7;
-  border-radius: 20px;
-  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+  min-height: 100dvh;
+  padding: 52px 24px 64px;
+
+  background:
+    radial-gradient(ellipse 120% 55% at 50% 0%, rgba(139, 92, 246, 0.2) 0%, transparent 58%),
+    linear-gradient(rgba(7, 7, 13, 0.9), rgba(7, 7, 13, 0.9)),
+    url('/public/imagenes/fondo2.jpg');
+  background-size: cover;
+  background-position: center;
+
 }
 
+/* Inner container */
+.posts-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* When no .posts-inner wrapper, target direct children */
+.posts-page > * {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Title */
 .posts-page h1 {
-  margin: 0 0 24px;
-  text-align: left;
-  color: #1f2937;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  color: var(--text-1);
+  animation: fade-up 0.5s var(--ease-out) 0.1s both;
 }
 
+/* Post list */
 .post-list {
   display: grid;
-  gap: 16px;
+  gap: 12px;
+  margin-bottom: 36px;
+  animation: fade-up 0.5s var(--ease-out) 0.18s both;
 }
 
+/* Individual post card */
 .post {
-  padding: 18px 20px;
-  background: #ffffff;
-  border: 1px solid #dbe7f3;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+  padding: 20px 22px;
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+
+  animation: post-enter 0.4s var(--ease-out) both;
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+    transform     0.22s var(--ease-spring),
+    border-color  0.18s ease,
+    box-shadow    0.18s ease;
+ 
+    will-change: transform;
 }
 
 .post:hover {
   transform: translateY(-2px);
-  border-color: #b9d7f2;
-  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(139, 92, 246, 0.15);
 }
 
+/* Author */
 .post strong {
   display: block;
-  margin-bottom: 10px;
-  font-size: 1rem;
-  color: #0f172a;
+  margin-bottom: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--accent-light);
 }
 
+/* Content */
 .post span {
   display: block;
-  line-height: 1.65;
-  color: #334155;
+  line-height: 1.72;
+  color: var(--text-2);
   word-break: break-word;
+  font-size: 0.94rem;
 }
 
+/* Empty state */
 .empty-state {
-  padding: 18px 20px;
-  margin: 0;
-  color: #64748b;
-  background: #f8fafc;
-  border: 1px dashed #cbd5e1;
-  border-radius: 16px;
+  padding: 36px 24px;
+  text-align: center;
+  color: var(--text-3);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--r-lg);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  animation: fade-up 0.5s var(--ease-out) 0.2s both;
 }
 
 .posts-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 24px;
+  gap: 10px;
+  animation: fade-up 0.5s var(--ease-out) 0.28s both;
 }
 
-.btn-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 16px;
-  border-radius: 999px;
-  background: #2563eb;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-}
+/* Stagger delays (up to 12 posts) */
+.post:nth-child(1)  { animation-delay:   0ms; }
+.post:nth-child(2)  { animation-delay:  55ms; }
+.post:nth-child(3)  { animation-delay: 110ms; }
+.post:nth-child(4)  { animation-delay: 165ms; }
+.post:nth-child(5)  { animation-delay: 220ms; }
+.post:nth-child(6)  { animation-delay: 275ms; }
+.post:nth-child(7)  { animation-delay: 330ms; }
+.post:nth-child(8)  { animation-delay: 385ms; }
+.post:nth-child(9)  { animation-delay: 440ms; }
+.post:nth-child(10) { animation-delay: 495ms; }
+.post:nth-child(11) { animation-delay: 540ms; }
+.post:nth-child(12) { animation-delay: 580ms; }
 
-.btn-link:hover {
-  text-decoration: none;
-  transform: translateY(-1px);
-  background: #1d4ed8;
-}
-
-.btn-link.secondary {
-  background: #e2e8f0;
-  color: #1e293b;
-}
-
-.btn-link.secondary:hover {
-  background: #cbd5e1;
-}
-
+/* Mobile */
 @media (max-width: 640px) {
   .posts-page {
-    margin: 16px;
-    padding: 20px;
-    border-radius: 16px;
+    padding: 36px 16px 52px;
   }
-}
 
-.btn-link.logout {
-  background: #ef4444;
-  color: #fff;
-}
+  .posts-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-.btn-link.logout:hover {
-  background: #dc2626;
+  .btn-link {
+    justify-content: center;
+  }
 }

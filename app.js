@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/public", express.static(path.join(__dirname, "public")));
+app.use("/video", express.static(path.join(__dirname, "video")));
 
 app.use(authRoutes);
 app.use(pageRoutes);

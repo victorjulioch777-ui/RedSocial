@@ -1,0 +1,17 @@
+{
+  "name": "redsocial",
+  "version": "1.0.0",
+  "description": "Nexio - Red Social",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "node-emoji": "^1.11.0"
+  }
+}

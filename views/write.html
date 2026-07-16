@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Escribe un Post - Red Social</title>
+    <title>Nuevo Post — Nexio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="/public/css/global.css" />
     <link rel="stylesheet" href="/public/css/write.css" />
   </head>
@@ -11,24 +13,28 @@
     <main class="write-page">
       <section class="write-card">
         <p class="eyebrow">Nuevo post</p>
-        <h1>✍️ Escribe un nuevo Post</h1>
+        <h1>Escribe un Post</h1>
 
         <form id="postForm" class="post-form">
-          <label for="writer">Tu nombre</label>
-          <input
-            type="text"
-            id="writer"
-            placeholder="Escribe tu nombre"
-            required
-          />
+          <div>
+            <label for="writer">Tu nombre</label>
+            <input
+              type="text"
+              id="writer"
+              placeholder="Escribe tu nombre"
+              required
+            />
+          </div>
 
-          <label for="content">Tu Post</label>
-          <textarea
-            id="content"
-            rows="6"
-            placeholder="¿Qué estás pensando?"
-            required
-          ></textarea>
+          <div>
+            <label for="content">Tu Post</label>
+            <textarea
+              id="content"
+              rows="6"
+              placeholder="¿Qué estás pensando?"
+              required
+            ></textarea>
+          </div>
 
           <button type="submit">Publicar</button>
         </form>
@@ -43,4 +49,3 @@
     <script src="/public/js/write.js"></script>
   </body>
 </html>
-

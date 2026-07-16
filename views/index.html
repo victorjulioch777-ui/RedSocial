@@ -3,28 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Red Social - Home</title>
+    <title>Nexio — Red Social</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="/public/css/global.css" />
     <link rel="stylesheet" href="/public/css/index.css" />
   </head>
   <body>
     <main class="home-page">
       <section class="hero-card">
-        <img class="hero-image" src="/public/imagenes/fondo.png" alt="Imagen de Nexio" />
+        <img class="hero-logo" src="/public/imagenes/logo-sin-fondo.png" alt="Nexio" />
+        <video class="hero-image" autoplay muted loop playsinline>
+          <source src="/video/en_esta_parte_puedes_realizar.mp4" type="video/mp4" />
+        </video>
         <p class="eyebrow">Red social</p>
         <h1>Bienvenidos a Nexio</h1>
         <p class="lead">
-          Comparte ideas, escribe posts y mira lo que otras personas han
-          publicado.
+          Comparte ideas, escribe posts y mira lo que otras personas han publicado.
         </p>
-
         <div class="home-actions">
-          <a class="btn-link" href="/write">✍️ Escribe un Post</a>
-          <a class="btn-link secondary" href="/posts">📋 Mira un Posts</a>
+          <a class="btn-link" href="/write">Escribe un Post</a>
+          <a class="btn-link secondary" href="/posts">Ver Posts</a>
           <a class="btn-link logout" href="/logout">Cerrar sesión</a>
         </div>
       </section>
     </main>
   </body>
 </html>
-
