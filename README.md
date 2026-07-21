@@ -23,7 +23,7 @@ Red Social es una plataforma web moderna diseñada para conectar usuarios, permi
   - Responsive Design
 
 - **Backend:**
-  - Node.js (opcional)
+  - Node.js
   - Base de datos (opcional)
 
 - **Herramientas:**
@@ -33,12 +33,14 @@ Red Social es una plataforma web moderna diseñada para conectar usuarios, permi
 ## Instalación
 
 ### Requisitos Previos
+
 - Navegador web moderno (Chrome, Firefox, Safari, Edge)
 - Git instalado en tu máquina
 
 ### Pasos de Instalación
 
 1. **Clonar el repositorio:**
+
    ```bash
    git clone https://github.com/victorjulioch777-ui/RedSocial.git
    cd RedSocial
@@ -103,6 +105,7 @@ RedSocial/
 ## Autor
 
 **Victor Julio Ch.**
+
 - GitHub: [@victorjulioch777-ui](https://github.com/victorjulioch777-ui)
 
 ## Licencia
@@ -170,6 +173,7 @@ Los paquetes necesarios son express, chalk, node-emoji, morgan y cookie-parser. 
 Si falta alguna dependencia, ejecuta:
 
 npm install express chalk node-emoji morgan cookie-parser
+npm install ejs
 
 Para iniciar el servidor:
 
@@ -234,7 +238,6 @@ CASO 6: Expiracion de cookie
 3. Busca Cookies y selecciona http://localhost:3000.
 4. Verifica que exista autenticado despues del login.
 5. Confirma que tenga HttpOnly, SameSite=Lax y expiracion aproximada de 10 minutos.
-
 
 ## Importante sobre Go Live
 
