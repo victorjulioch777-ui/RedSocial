@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Posts — Nexio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
+    <link rel="stylesheet" href="/public/css/global.css" />
+    <link rel="stylesheet" href="/public/css/posts.css" />
+  </head>
+
+  <body>
+    <%
+      const postData =
+        typeof posts !== "undefined"
+          ? posts
+          : [];
+
+      const userIsAuthenticated =
+        typeof isAuthenticated !== "undefined"
+          ? isAuthenticated
+          : false;
+
+      const commentErrorText =
+        typeof commentError !== "undefined"
+          ? commentError
+          : null;
+
+      const commentErrorId =
+        typeof commentErrorPostId !== "undefined" && commentErrorPostId
+          ? String(commentErrorPostId)
+          : null;
+
+      const commentData =
+        typeof commentFormData !== "undefined"
+          ? commentFormData
+          : {};
+    %>
+
+    <main class="posts-page">
+      <h1>Posts recientes</h1>
+
+      <div id="postList" class="post-list">
+        <% if (postData.length === 0) { %>
+          <section class="empty-state">
+            <p>No hay posts todavía. ¡Sé el primero en escribir uno!</p>
+
+            <a class="btn-link" href="/write">
+              Crear el primer post
+            </a>
+          </section>
+        <% } %>
+
+        <% postData.forEach((post, index) => { %>
+          <%
+            const postId = String(post._id);
+            const comments = Array.isArray(post.comments)
+              ? post.comments
+              : [];
+            const hasCommentError = commentErrorId === postId;
+          %>
+
+          <article
+            id="post-<%= postId %>"
+            class="post"
+            style="animation-delay: <%= index * 60 %>ms"
+          >
+            <div class="post-header">
+              <strong class="post-author">
+                <%= post.author %>
+              </strong>
+
+              <time class="post-date">
+                <%= new Date(post.createdAt).toLocaleString("es-CR", {
+                  dateStyle: "medium",
+                  timeStyle: "short"
+                }) %>
+              </time>
+            </div>
+
+            <p class="post-content">
+              <%= post.content %>
+            </p>
+
+            <section class="comments" aria-label="Comentarios">
+              <div class="comments-header">
+                <h2>Comentarios</h2>
+
+                <span>
+                  <%= comments.length %>
+                </span>
+              </div>
+
+              <% if (comments.length === 0) { %>
+                <p class="comments-empty">
+                  Sé el primero en comentar este post.
+                </p>
+              <% } %>
+
+              <% if (comments.length > 0) { %>
+                <div class="comment-list">
+                  <% comments.forEach((comment) => { %>
+                    <article class="comment">
+                      <div class="comment-meta">
+                        <strong class="comment-author">
+                          <%= comment.author %>
+                        </strong>
+
+                        <time class="comment-date">
+                          <%= new Date(comment.createdAt).toLocaleString("es-CR", {
+                            dateStyle: "medium",
+                            timeStyle: "short"
+                          }) %>
+                        </time>
+                      </div>
+
+                      <p class="comment-content">
+                        <%= comment.content %>
+                      </p>
+                    </article>
+                  <% }) %>
+                </div>
+              <% } %>
+
+              <form
+                class="comment-form"
+                action="/posts/<%= postId %>/comments"
+                method="POST"
+              >
+                <% if (hasCommentError && commentErrorText) { %>
+                  <p class="comment-error">
+                    <%= commentErrorText %>
+                  </p>
+                <% } %>
+
+                <div class="comment-fields">
+                  <label>
+                    <span>Nombre</span>
+
+                    <input
+                      type="text"
+                      name="author"
+                      maxlength="80"
+                      placeholder="Tu nombre"
+                      value="<%= hasCommentError ? commentData.author || '' : '' %>"
+                      required
+                    />
+                  </label>
+
+                  <label>
+                    <span>Comentario</span>
+
+                    <textarea
+                      name="content"
+                      maxlength="300"
+                      rows="2"
+                      placeholder="Escribe un comentario"
+                      required
+                    ><%= hasCommentError ? commentData.content || '' : '' %></textarea>
+                  </label>
+                </div>
+
+                <button class="comment-button" type="submit">
+                  Comentar
+                </button>
+              </form>
+            </section>
+          </article>
+        <% }) %>
+      </div>
+
+      <div class="posts-actions">
+        <a class="btn-link" href="/write">
+          Escribir un post
+        </a>
+
+        <% if (userIsAuthenticated) { %>
+          <a class="btn-link secondary" href="/home">
+            ← Inicio
+          </a>
+
+          <a class="btn-link logout" href="/logout">
+            Cerrar sesión
+          </a>
+        <% } else { %>
+          <a class="btn-link secondary" href="/login">
+            Iniciar sesión
+          </a>
+        <% } %>
+      </div>
+    </main>
+  </body>
+</html>

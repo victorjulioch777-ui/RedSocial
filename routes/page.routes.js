@@ -24,13 +24,5 @@ router.get("/home", protegerRuta, (req, res) => {
   res.sendFile(viewPath("index.html"));
 });
 
-router.get("/write", protegerRuta, (req, res) => {
-  res.sendFile(viewPath("write.html"));
-});
-
-router.get("/posts", protegerRuta, (req, res) => {
-  res.sendFile(viewPath("posts.html"));
-});
-
 module.exports = router;
 

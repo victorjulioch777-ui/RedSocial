@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Nuevo Post — Nexio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
+    <link rel="stylesheet" href="/public/css/global.css" />
+    <link rel="stylesheet" href="/public/css/write.css" />
+  </head>
+
+  <body>
+    <%
+      const data =
+        typeof formData !== "undefined"
+          ? formData
+          : {};
+
+      const errorMessage =
+        typeof error !== "undefined"
+          ? error
+          : null;
+    %>
+
+    <main class="write-page">
+      <section class="write-card">
+        <p class="eyebrow">Nuevo post</p>
+
+        <h1>Escribe un Post</h1>
+
+        <% if (errorMessage) { %>
+          <div class="error-message">
+            <p><%= errorMessage %></p>
+          </div>
+        <% } %>
+
+        <form
+          id="postForm"
+          class="post-form"
+          action="/write"
+          method="POST"
+        >
+          <div>
+            <label for="author">Tu nombre</label>
+
+            <input
+              type="text"
+              id="author"
+              name="author"
+              placeholder="Escribe tu nombre"
+              maxlength="80"
+              value="<%= data.author || '' %>"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="content">Tu Post</label>
+
+            <textarea
+              id="content"
+              name="content"
+              rows="6"
+              maxlength="500"
+              placeholder="¿Qué estás pensando?"
+              required
+            ><%= data.content || '' %></textarea>
+          </div>
+
+          <button type="submit">
+            Publicar
+          </button>
+        </form>
+
+        <div class="write-actions">
+          <a class="back-link" href="/home">
+            ← Regresar al inicio
+          </a>
+
+          <a
+            class="back-link logout-link"
+            href="/logout"
+          >
+            Cerrar sesión
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
