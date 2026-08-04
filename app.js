@@ -11,6 +11,7 @@ const cookieParser = require("cookie-parser");
 const connectDB = require("./config/database");
 
 const authRoutes = require("./routes/auth.routes");
+const friendRoutes = require("./routes/friend.routes");
 const postRoutes = require("./routes/post.routes");
 const pageRoutes = require("./routes/page.routes");
 
@@ -35,6 +36,7 @@ app.use("/video", express.static(path.join(__dirname, "video")));
 
 app.use(authRoutes);
 
+app.use(friendRoutes);
 app.use(postRoutes);
 app.use(pageRoutes);
 

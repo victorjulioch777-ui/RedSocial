@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Amigos — Nexio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
+    <link rel="stylesheet" href="/public/css/global.css" />
+    <link rel="stylesheet" href="/public/css/friends.css" />
+  </head>
+
+  <body>
+    <%
+      const friendList =
+        typeof friends !== "undefined" && Array.isArray(friends)
+          ? friends
+          : [];
+
+      const userList =
+        typeof suggestedUsers !== "undefined" && Array.isArray(suggestedUsers)
+          ? suggestedUsers
+          : [];
+
+      const searchValue =
+        typeof search !== "undefined"
+          ? search
+          : "";
+
+      const feedback =
+        typeof message !== "undefined"
+          ? message
+          : null;
+
+      const data =
+        typeof formData !== "undefined"
+          ? formData
+          : {};
+    %>
+
+    <main class="friends-page">
+      <section class="friends-shell">
+        <div class="friends-heading">
+          <div>
+            <p class="eyebrow">Conexiones</p>
+
+            <h1>Amigos</h1>
+          </div>
+
+          <a class="btn-link secondary" href="/home">
+            Inicio
+          </a>
+        </div>
+
+        <% if (feedback) { %>
+          <div class="friend-message <%= feedback.type %>">
+            <p><%= feedback.text %></p>
+          </div>
+        <% } %>
+
+        <section class="friend-panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Agregar por usuario</h2>
+
+              <p>Escribe el nombre exacto de la persona que quieres agregar.</p>
+            </div>
+          </div>
+
+          <form
+            class="friend-add-form"
+            action="/friends"
+            method="POST"
+          >
+            <label for="username">Usuario</label>
+
+            <div class="friend-add-row">
+              <input
+                type="text"
+                id="username"
+                name="username"
+                maxlength="80"
+                placeholder="Ejemplo: ana"
+                value="<%= data.username || '' %>"
+                required
+              />
+
+              <button type="submit">
+                Agregar
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="friend-panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Mis amigos</h2>
+
+              <p><%= friendList.length %> conexiones guardadas.</p>
+            </div>
+          </div>
+
+          <% if (friendList.length === 0) { %>
+            <p class="empty-copy">
+              Aún no has agregado amigos.
+            </p>
+          <% } %>
+
+          <% if (friendList.length > 0) { %>
+            <div class="friend-grid">
+              <% friendList.forEach((friend) => { %>
+                <article class="friend-card">
+                  <div class="avatar">
+                    <%= String(friend.username || "?").slice(0, 1).toUpperCase() %>
+                  </div>
+
+                  <div class="friend-info">
+                    <h3><%= friend.username %></h3>
+                    <span>Amigo</span>
+                  </div>
+
+                  <form
+                    action="/friends/<%= friend._id %>/remove"
+                    method="POST"
+                  >
+                    <button class="ghost-button danger" type="submit">
+                      Eliminar
+                    </button>
+                  </form>
+                </article>
+              <% }) %>
+            </div>
+          <% } %>
+        </section>
+
+        <section class="friend-panel">
+          <div class="panel-heading search-heading">
+            <div>
+              <h2>Buscar usuarios</h2>
+
+              <p>Encuentra perfiles creados desde posts, comentarios o agregados manualmente.</p>
+            </div>
+
+            <form class="friend-search" action="/friends" method="GET">
+              <input
+                type="search"
+                name="q"
+                placeholder="Buscar"
+                value="<%= searchValue %>"
+              />
+
+              <button type="submit">
+                Buscar
+              </button>
+            </form>
+          </div>
+
+          <% if (userList.length === 0) { %>
+            <p class="empty-copy">
+              No hay usuarios para mostrar.
+            </p>
+          <% } %>
+
+          <% if (userList.length > 0) { %>
+            <div class="friend-grid">
+              <% userList.forEach((user) => { %>
+                <article class="friend-card">
+                  <div class="avatar">
+                    <%= String(user.username || "?").slice(0, 1).toUpperCase() %>
+                  </div>
+
+                  <div class="friend-info">
+                    <h3><%= user.username %></h3>
+
+                    <% if (user.isFriend) { %>
+                      <span>Ya es tu amigo</span>
+                    <% } else { %>
+                      <span>Disponible</span>
+                    <% } %>
+                  </div>
+
+                  <% if (user.isFriend) { %>
+                    <form
+                      action="/friends/<%= user._id %>/remove"
+                      method="POST"
+                    >
+                      <button class="ghost-button danger" type="submit">
+                        Eliminar
+                      </button>
+                    </form>
+                  <% } else { %>
+                    <form
+                      action="/friends/<%= user._id %>/add"
+                      method="POST"
+                    >
+                      <button class="ghost-button" type="submit">
+                        Agregar
+                      </button>
+                    </form>
+                  <% } %>
+                </article>
+              <% }) %>
+            </div>
+          <% } %>
+        </section>
+
+        <div class="friends-actions">
+          <a class="btn-link" href="/write">
+            Escribir un post
+          </a>
+
+          <a class="btn-link secondary" href="/posts">
+            Ver posts
+          </a>
+
+          <a class="btn-link logout" href="/logout">
+            Cerrar sesión
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
