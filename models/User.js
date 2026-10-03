@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema(
       index: true,
     },
 
+    passwordHash: {
+      type: String,
+      select: false,
+    },
+
     friends: [
       {
         type: mongoose.Schema.Types.ObjectId,
