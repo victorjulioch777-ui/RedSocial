@@ -39,9 +39,8 @@ const userSchema = new mongoose.Schema(
   },
 );
 
-userSchema.pre("validate", function setNormalizedUsername(next) {
+userSchema.pre("validate", function setNormalizedUsername() {
   this.normalizedUsername = normalizeUsername(this.username);
-  next();
 });
 
 module.exports = mongoose.model("User", userSchema);
